@@ -126,7 +126,7 @@ for a text block of width <i>w</i>, you center it by setting the
 
 <h2><a id="initWithText">Displaying Without Changes</a></h2>
 <p>
-What if you included text when you initialized your 
+What if you included text when you initialized your
 <code>TextBlock</code>, as in the following code?
 </p>
 
@@ -197,7 +197,7 @@ a character, use <code>remove</code> instead of <code>hide</code>.
 
 <p>If you have characters that overlap on the tableau, then
 <code>hide</code> followed by <code>show</code> will not do the same thing
-as <code>remove</code> followed by <code>show</code>. 
+as <code>remove</code> followed by <code>show</code>.
 <a href="hideShowRemoveExample/hideShowRemoveExample.html">This example
 novel shows the difference</a>.
 </p>
@@ -254,7 +254,7 @@ code for the menu that lets you choose your color:
 
 <p>
 Lines 3 and 4 show the method you will usually use to set variables, by
-giving the variable name and its value. Variable names must follow 
+giving the variable name and its value. Variable names must follow
 JavaScript rules: they must begin with a letter or underscore, followed by
 letters, digits, or underscores.
 </p>
@@ -266,7 +266,7 @@ What&rsquo;s <em>really</em> happening behind the scenes is that your
 <code>novel.userVar</code>.  Lines 5 and 6 show the &ldquo;hard way&rdquo;
 to set variables&mdash;by directly changing the <code>novel.userVar</code>
 object. This is important to know so that you can use the variables
-later on.  Here&rsquo;s the rest of the script: 
+later on.  Here&rsquo;s the rest of the script:
 </p>
 
 <div class="inset bordered">
@@ -287,12 +287,12 @@ later on.  Here&rsquo;s the rest of the script:
     <dd>When you want to reference a variable, you enclose it in a
     set of double braces <code>{{&nbsp;}}</code>, and you <em>must</em>
     use the <code>novel.userVar</code> notation. The double braces
-    <dfn>interpolate</dfn> the variable; that is, they 
+    <dfn>interpolate</dfn> the variable; that is, they
     &ldquo;fill in the blank.&rdquo;</dd>
 <dt>Line 10</dt>
     <dd>Interpolation isn&rsquo;t just for dialog. You can use it
     for file names and menu items. (<i>Ideally, interpolation will
-    work anywhere you can put a quoted string, but I don&rsquo;t 
+    work anywhere you can put a quoted string, but I don&rsquo;t
     know if I have implemented it everywhere. If you find an instance
     where it doesn&rsquo;t work, let me know.</i>)</dd>
 </dl>
@@ -360,7 +360,7 @@ inputArea = new Input('yourName',
 </div>
 
 <p>The <code>Input</code> object has the same parameters as a
-<code>TextBlock</code>, with one small difference: the 
+<code>TextBlock</code>, with one small difference: the
 <code>text:</code> property gives the default value for the input
 field, and it is plain text rather than HTML.</p>
 
@@ -375,7 +375,7 @@ accesses it via <code>novel.userVar.yourName</code>.
 </p>
 
 <div class="inset bordered">
-<pre>script = [  
+<pre>script = [
     label, "start",
     scene, "wheat.png",
 
@@ -462,7 +462,7 @@ parts.
 As in JavaScript, you must use two equal signs in a row (<code>==</code>)
 to test for equality. To test to see if items are not equal, use
 <code>!=</code>.  Less than is <code>&lt;</code>;  greater than is
-<code>&gt;</code>. Less than or equal is<code>&lt;=</code>, 
+<code>&gt;</code>. Less than or equal is<code>&lt;=</code>,
 and greater than or equal is <code>&gt;=</code>.
 </p>
 
@@ -486,9 +486,9 @@ as specified in the <code>elsePart</code> on line 5.
 <span class="line"> 2</span>&nbsp;  david, {image: "smiling1.png"},
 <span class="line"> 3</span>&nbsp;  david, "Especially one that purrs!",
 <span class="line"> 4</span>&nbsp;  david, {image: "simple1.png"},
-<span class="line"> 5</span>&nbsp;elsePart, "", 
+<span class="line"> 5</span>&nbsp;elsePart, "",
 <span class="line"> 6</span>&nbsp;  david, "Your dog will be a loyal companion for life.",
-<span class="line"> 7</span>&nbsp;endIf, "", 
+<span class="line"> 7</span>&nbsp;endIf, "",
 </pre>
 </div>
 
@@ -514,7 +514,7 @@ If there is a series of statements that you will do many times during
 a script, you can put them in a <dfn>subroutine</dfn>, which is analogous
 to a JavaScript function.
 Think of it as a &ldquo;mini-script&rdquo; that you can call
-upon whenever you need it. 
+upon whenever you need it.
 <a href="subExample/subExample.html">Take a look at this sample
 visual novel</a>. Every time a character speaks, his picture becomes
 completely opaque and the non-speaking character&rsquo;s picture becomes
@@ -548,7 +548,7 @@ subroutine:
     gold, { alpha: 1.0 },
     green, { alpha: 0.3 },
 endSub, "",
-    
+
     sub, "showGreen",
     gold, { alpha: 0.3 },
     green, { alpha: 1.0 },
@@ -618,7 +618,7 @@ It has these properties:
             <code>"play"</code>, <code>"pause"</code>,
             <code>"rewind"</code>, or <code>"stop"</code>
     </td></tr>
-    <tr><td><code>se</code></td>
+    <tr><td><code>secondary</code></td>
       <td>
         Uses a seperate audio stream, will not loop and plays along side any background audio.
         <br>Good for playing voice files and sound effects.
@@ -656,7 +656,7 @@ to see if the browser can play file <samp>scale.wav</samp>. If you had only
 provided one file, say, the Ogg Vorbis format, you would simply have put
 <code>src: "scale.ogg"</code> and omitted the <code>format</code> property.
 <br>
-The 
+The
 </p>
 
 <h2><a id="background">Backgrounds</a></h2>
@@ -745,13 +745,13 @@ function prepareNovel()
 
 <p>
 As soon as the script engine encounters the <code>imagemap</code>
-command, it will attach the <code>&lt;map&gt;</code> with the 
+command, it will attach the <code>&lt;map&gt;</code> with the
 <code>mapId</code> that you specify to the image currently displayed
 by the <code>character</code> that you name. The novel then pauses and
 waits for user interaction.
 </p>
 
-<p><span class="warning">Important: </span> 
+<p><span class="warning">Important: </span>
 In order to jump to a label in the script as the result of a click on
 the mapped image, you <emphasis>must</emphasis> use the
 <code>novel_mapjump()</code> function rather than <code>jump()</code>. The
@@ -852,4 +852,3 @@ function addNumbers(x, y)
 </div>
 </body>
 </html>
-

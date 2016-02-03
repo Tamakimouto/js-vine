@@ -1476,6 +1476,9 @@ function audio(param)
                             }
                         }
                     }
+                    if (param.secondary != null)
+                        se = param.secondary;
+
                     if (suffix != "")
                     {
                         audioSource = audioSource + "." + suffix;
