@@ -1,6 +1,6 @@
 /*
     Copyright (C) 2011 by J. David Eisenberg
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -17,7 +17,7 @@
 var novel_script;
 /*
     A Character is an actor that can speak and be displayed.
-    
+
     name: the name of the character
     escName: the escape() version of name; used as an id="" attribute
     color: text color for this character
@@ -52,7 +52,7 @@ function Character(characterName)
     this.prevPosition = new Position(0, 0, true);
     this.alpha = 1.0;
     this.visibility = "visible";
-    
+
     /*
         If a second argument is given, it is an anonymous
         object giving the initial image and position of this
@@ -80,7 +80,7 @@ Character.prototype.display = function(param)
 {
     var closure = this;
     var displayImage = true;
-    
+
     /*
         If the parameter is an object, set the character's properties
         to the properties given in the parameter
@@ -107,7 +107,7 @@ Character.prototype.display = function(param)
             }
         }
     }
-    
+
     /*
         The image's width and height don't get set immediately if the
         image isn't cached, so wait 30 milliseconds to finish the display.
@@ -146,9 +146,9 @@ Character.prototype.finishDisplay = function(param, displayImage)
             this.image.width != this.domRef.width ||
             this.image.height != this.domRef.height)
         }
-        
+
         el.src = this.image.src;    // load in the new picture
-        
+
         if (changed && displayImage)
         {
             /*
@@ -176,8 +176,8 @@ Character.prototype.finishDisplay = function(param, displayImage)
 		{
             novel_setAlpha(this.domRef, this.alpha);
 		}
-			
-        
+
+
         if (param && param.say)
         {
             this.say(param.say);
@@ -191,7 +191,7 @@ Character.prototype.finishDisplay = function(param, displayImage)
             playNovel();
         }
     }
-    else 
+    else
     {
         /* Image isn't loaded yet; try again in 30 milliseconds */
         novel.waitCount++;
@@ -227,7 +227,7 @@ Character.prototype.setAlpha = function(alpha)
 /*
     Show the character' name (if any) and the
     given string in the <div id="dialog"> area.
-    
+
     Anything in {{ }} is interpolated.
 */
 Character.prototype.say = function(str)
@@ -254,7 +254,7 @@ Character.prototype.say = function(str)
     htmlStr += str;
     novel.dialog.innerHTML = htmlStr;
     novel.paused = true;
-    // novel.paused = (arguments.length == 1) ? true : (!arguments[1]);     
+    // novel.paused = (arguments.length == 1) ? true : (!arguments[1]);
 }
 
 /*
@@ -278,7 +278,7 @@ Character.prototype.doAction = function(param)
 /* ============================================== */
 /*
     A TextBlock is a block of text that can be displayed.
-    
+
     name: the name for this text block
     escName: the escape() of the name; used as an id="" attribute
     color: text color for this block
@@ -312,7 +312,7 @@ function TextBlock(textName)
     this.width = 1.0; // decimal percentage
     this.visibility = "visible";
     this.text = "";
-    
+
     /*
         If given a second parameter, use its fields
         to set the TextBlock's fields
@@ -360,7 +360,7 @@ TextBlock.prototype.display = function(param)
         novel.actors.push(this);
     }
     this.domRef = document.getElementById(this.escName);
-    
+
     novel_textEntity_display(this, param);
 }
 
@@ -399,7 +399,7 @@ function novel_textEntity_display(obj, param)
 
     xPos = obj.position.x;
     yPos = obj.position.y;
-    
+
     // and its position and attributes
     if (obj.position.xRelative)
     {
@@ -467,7 +467,7 @@ TextBlock.prototype.doAction = function(param)
 
 /*
     A Input is a block of text that can be displayed.
-    
+
     name: the name for this text block
     escName: the escape() of the name; used as an id="" attribute
     color: text color for this block
@@ -510,7 +510,7 @@ function Input(textName)
     this.width = 1.0; // decimal percentage
     this.visibility = "visible";
     this.text = "";
-    
+
     /*
         If given a second parameter, use its fields
         to set the Input's fields
@@ -558,7 +558,7 @@ Input.prototype.display = function(param)
     this.domRef = document.getElementById(this.escName);
     this.domRef.value = this.text;
     this.domRef.focus();
-    
+
     novel_textEntity_display(this, param);
     novel.paused = true;
     novel.ignoreClicks = true;
@@ -636,10 +636,10 @@ function MenuItem(n, text, label)
     A Position specifies an item's screen position
     (x, y); whether the coordinates are absolute (pixels)
     or relative (decimal percent in range 0-1.0).
-    
+
     xAnchor and yAnchor are used to offset the "top left"
     point of an image.
-    
+
     Presume an image that is 200 x 150 would ordinarily
     be displayed with its upper left corner at (300, 400).
     If xAnchor is .2 and yAnchor is .5, then the image
@@ -664,7 +664,7 @@ Position.prototype.equals = function(other)
 {
     return (this.x == other.x && this.y == other.y &&
         this.relative == other.relative &&
-        this.xAnchor == other.xAnchor && this.yAnchor == other.yAnchor); 
+        this.xAnchor == other.xAnchor && this.yAnchor == other.yAnchor);
 }
 
 /*
@@ -687,7 +687,7 @@ Position.prototype.clone = function()
     Even though there is only one novel, I create an object for it
     to avoid polluting the variables namespace. Further than it
     already is polluted, that is.
-    
+
     frame: the current frame that is onscreen
     tableau: the <div id="novel"> (Name comes from card games)
     dialog: the <div id="dialog"> where characters "speak"
@@ -723,6 +723,7 @@ function Novel() {
     this.tableau = null;
     this.dialog = null;
     this.audio = null;
+    this.audio2 = null;
     this.audioLoop = false;
     this.paused = false;
     this.history = new Array();
@@ -806,7 +807,7 @@ function novel_addOnClick(el, value)
 
 /*
     Handle a click on a menu item. Stop event propagation
-    so that the tableau doesn't intercept the event. 
+    so that the tableau doesn't intercept the event.
     Set novel_script to the menu's script, and the frame
     to the first command in that script. Then
     start playing the novel.
@@ -855,7 +856,7 @@ function novel_fadeBgOut(targetAlpha)
         setTimeout('novel_finishLoadingBackground("fade", ' + targetAlpha + ')', 30);
     }
 }
-    
+
 /*
     Fade in the background image by increasing
     its alpha by 10% every 0.1 seconds. When totally
@@ -905,7 +906,7 @@ function novel_dissolveIn(targetAlpha, n)
         playNovel();
     }
 }
-    
+
 /*
     Create the associative array of the labels and
     their frame numbers in the main script. Only the
@@ -926,7 +927,7 @@ function novel_collectLabels()
         }
     }
 }
-        
+
 /*
     Save a reference to the script array
     and the frame
@@ -1073,7 +1074,7 @@ function remove(param)
 {
     var i;
     var foundPos = -1;
-    
+
     if (param.constructor == Character ||
         param.constructor == TextBlock)
     {
@@ -1094,7 +1095,7 @@ function remove(param)
             novel.actors.splice(foundPos, 1);
         }
     }
-            
+
 }
 
 function stopAudio()
@@ -1134,7 +1135,7 @@ function menu(menuArray)
     novel.dialog.style.textAlign="center";
     for (var i = 1; i < menuArray.length; i += 2)
     {
-        var mItem = new MenuItem((i-1) / 2, menuArray[i], menuArray[i+1]); 
+        var mItem = new MenuItem((i-1) / 2, menuArray[i], menuArray[i+1]);
         var el = mItem.domRef;
         novel_addOnClick(el, menuArray[i+1]);
         el.innerHTML = menuArray[i].replace(/{{(.*?)}}/g, novel_interpolator);
@@ -1173,13 +1174,13 @@ function novel_mapJump(label)
 {
     jump(label); // gets us to the correct place for a call from playNovel
     novel.frame += 2; // but we're calling it when playNovel isn't active
-    
+
     if (novel.mappedImage)
     {
         novel.mappedImage.removeAttribute("usemap");
         novel.mappedImage = null;
     }
-    
+
     /*
         We need to both return false and call playNovel(). We can't
         do both, so we'll set up a timer for 10 msec to call playNovel(),
@@ -1219,7 +1220,7 @@ function novel_changeBackground(param, clearAll)
     var effect;
     var targetAlpha = 1.0;
     var bg;
-    
+
     if (clearAll)
     {
         clearTableau();
@@ -1300,7 +1301,7 @@ function novel_finishLoadingBackground(effect, targetAlpha)
     else
     {
         setTimeout('novel_finishLoadingBackground("' + effect + '", ' + targetAlpha + ')', 30);
-    }   
+    }
 }
 
 /*
@@ -1429,11 +1430,11 @@ function sub(str)
 
 /*
     Play the audio with the given filename. The default
-    action is to NOT loop the sound indefinitely.
-    
+    action is to loop the sound indefinitely.
+
     If given an object, the src property gives the filename
     and the loop property (boolean) tells whether to loop or not.
-    
+
     If the parameter is null, sound is stopped.
 */
 
@@ -1445,7 +1446,8 @@ function audio(param)
         "ogg": 'audio/ogg;codecs="vorbis"',
         "mp3": "audio/mpeg"};
     var suffix = "";
-    
+    var se = false;
+
     if (novel.audio)
     {
         // stopAudio();
@@ -1454,7 +1456,7 @@ function audio(param)
             if (param.constructor == String)
             {
                 audioSource = param;
-                novel.audio.src = novel.audioPath + audioSource;                
+                novel.audio.src = novel.audioPath + audioSource;
                 novel.audioLoop = false;
             }
             else if (param.constructor == Object)
@@ -1476,8 +1478,14 @@ function audio(param)
                     if (suffix != "")
                     {
                         audioSource = audioSource + "." + suffix;
-						novel.audio.src = novel.audioPath + audioSource;
-						novel.audioLoop = false;
+                        if (!se) {
+					        novel.audio.src = novel.audioPath + audioSource;
+					        novel.audioLoop = true;
+                        } else {
+                            novel.audio2.src = novel.audioPath + audioSource;
+                            novel.audio2.play();
+                            return;
+                        }
                     }
 					else
 					{
@@ -1551,7 +1559,7 @@ function novel_unPause()
 {
     playNovel();
 }
-    
+
 /*
     Handle an if statement. The parameter is a
     condition to test (a string to be evaluated)
@@ -1636,6 +1644,7 @@ function initNovel(w, h)
     if (!!(document.createElement('audio').canPlayType))
     {
         novel.audio = new Audio();
+        novel.audio2 = new Audio();
     }
     else
     {
@@ -1657,10 +1666,10 @@ function initNovel(w, h)
     end of the novel, grab the next entry in novel_script. If it's
     a Character or a TextBlock, invoke its doAction() function, using
     the next item in the novel_script as its parameter.
-    
+
     If the entry is a function, then invoke that function with the next
     item in the novel_script as its parameter.
-    
+
     If none of the above, it's an error. Give an alert.
 */
 function playNovel()
