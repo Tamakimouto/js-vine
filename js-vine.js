@@ -1480,8 +1480,8 @@ function audio(param)
                     {
                         audioSource = audioSource + "." + suffix;
                         if (!se) {
-					        novel.audio.src = novel.audioPath + audioSource;
-					        novel.audioLoop = true;
+                            novel.audio.src = novel.audioPath + audioSource;
+                            novel.audioLoop = true;
                         } else {
                             novel.audio2.src = novel.audioPath + audioSource;
                             novel.audio2.play();
