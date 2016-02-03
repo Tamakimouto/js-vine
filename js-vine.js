@@ -692,6 +692,7 @@ Position.prototype.clone = function()
     tableau: the <div id="novel"> (Name comes from card games)
     dialog: the <div id="dialog"> where characters "speak"
     audio: the <div id="audio"> (if any, for music)
+    audio2: Second audio track.
     audioLoop: a boolean telling whether audio is looped or not
     paused: awaiting a click. We need this because JavaScript can't
         wait() or sleep().
