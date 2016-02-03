@@ -617,7 +617,14 @@ It has these properties:
         <td>one of:
             <code>"play"</code>, <code>"pause"</code>,
             <code>"rewind"</code>, or <code>"stop"</code>
-        </td></tr>
+    </td></tr>
+    <tr><td><code>se</code></td>
+      <td>
+        Uses a seperate audio stream, will not loop and plays along side any background audio.
+        <br>Good for playing voice files and sound effects.
+        <br>"true" or "false"; False by default.
+      </td>
+    </tr>
     </tbody>
 </table>
 
@@ -629,7 +636,8 @@ sound again.</p>
 audio example</a> that shows how to manipulate audio.</p>
 
 <div class="inset bordered">
-<pre>menu, [
+  <pre>
+    menu, [
     "Choose an option (loop is {{novel.audioLoop}})",
     "Start audio", [audio, {src: "scale", format: ["ogg","wav"], action: "play"}],
     "Stop audio", [audio, {action: "stop"}],
@@ -637,7 +645,7 @@ audio example</a> that shows how to manipulate audio.</p>
     "Resume audio", [audio, {action: "play"}],
     "Rewind audio", [audio, {action: "rewind"}],
     "Set loop true", [audio, {loop: true}],
-    "Set loop false", [audio, {loop: false}]
+    "Set loop false", [audio, {loop: false}],
 ],</pre>
 </div>
 
@@ -647,6 +655,8 @@ can play file <samp>scale.ogg</samp>. If it cannot, then the engine will test
 to see if the browser can play file <samp>scale.wav</samp>. If you had only
 provided one file, say, the Ogg Vorbis format, you would simply have put
 <code>src: "scale.ogg"</code> and omitted the <code>format</code> property.
+<br>
+The 
 </p>
 
 <h2><a id="background">Backgrounds</a></h2>
